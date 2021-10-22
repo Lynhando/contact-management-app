@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "name": "Do Ly Nhan",
+        "email": "nhan.dol@one-line.com",
+        "phone": "0123456789",
+        "address": "Da Nang",
+        "typeId": 1
+    },
+    {
+        "id": 2,
+        "name": "Tran Thi Dieu Linh",
+        "email": "linh.trantd@one-line.com",
+        "phone": "0123456789",
+        "address": "Hue",
+        "typeId": 2
+    }
+]
