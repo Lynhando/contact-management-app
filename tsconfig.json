@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "es2015",
+    "removeComments": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "moduleResolution": "node",
+    "types": ["node", "express"]
+  },
+  "exclude": ["node_modules", "src/scripts"]
+}
