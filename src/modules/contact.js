@@ -1,7 +1,8 @@
 import { Contact } from "../models/contact.js";
-export const showData = (contactData) => {
-    const table = document.querySelector("#listContact");
-    contactData.forEach((emp) => {
+export const showData = (contacts) => {
+    let table = document.querySelector("#listContact tbody");
+    table.innerHTML = "";
+    contacts.forEach((emp) => {
         const row = document.createElement("tr");
         Object.keys(emp).forEach((key) => {
             let cell = document.createElement("td");

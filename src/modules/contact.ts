@@ -1,17 +1,15 @@
 import { Contact } from "../models/contact.js";
 
-export const showData = (contactData: any[]) => {
-  const table = document.querySelector("#listContact");
-  contactData.forEach((emp) => {
-    // console.log(empObj)
+export const showData = (contacts: any[]) => {
+  let table = document.querySelector("#listContact tbody") as HTMLElement;
+  table.innerHTML = "";
+
+  contacts.forEach((emp) => {
     const row = document.createElement("tr");
     Object.keys(emp).forEach((key) => {
-      // if (key !== "typeId") {
       let cell = document.createElement("td");
       let textNode = document.createTextNode(emp[key]);
       cell.appendChild(textNode);
-
-      // }
       if (key == "typeId") cell.hidden = true;
       row.appendChild(cell);
     });
@@ -54,14 +52,6 @@ export const addData = (
   address: any,
   typeId: any
 ) => {
-  // const table = document.querySelector('#listContact') as HTMLTableElement;
-
-  // get all rows in the first table body
-  // const rows = table.tBodies[0].rows;
-
-  // const table = document.querySelector("#listContact") as HTMLTableElement
-  // const rows = table.tBodies[0].rows;
-  // console.log(rows)
   const itemContact = new Contact(
     id,
     contactName.value,
@@ -70,7 +60,6 @@ export const addData = (
     address.value,
     typeId
   );
-  // console.log(item)
   const table = document.querySelector("#listContact");
 
   let row = document.createElement("tr");
