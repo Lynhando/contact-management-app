@@ -1,124 +1,126 @@
 export class Contact {
-    private _id: number;
-    private _name: string;
-    private _email: string;
-    private _phone: string;
-    private _address: string;
-    private _typeId: number;
-
+    private id: number;
+    private name: string;
+    private email: string;
+    private phone: string;
+    private address: string;
+    private typeId: number;
 
   constructor(
-    _id: number, 
-    _name: string, 
-    _email: string, 
-    _phone: string, 
-    _address: string, 
-    _typeId: number
+    id: number, 
+    name: string, 
+    email: string, 
+    phone: string, 
+    address: string, 
+    typeId: number
 ) {
-    this._id = _id
-    this._name = _name
-    this._email = _email
-    this._phone = _phone
-    this._address = _address
-    this._typeId = _typeId
+    this.id = id
+    this.name = name
+    this.email = email
+    this.phone = phone
+    this.address = address
+    this.typeId = typeId
   }
 
 
     /**
-     * Getter id
+     * Getter $id
      * @return {number}
      */
-	public get id(): number {
-		return this._id;
+	public get $id(): number {
+		return this.id;
 	}
 
     /**
-     * Getter name
+     * Getter $name
      * @return {string}
      */
-	public get name(): string {
-		return this._name;
+	public get $name(): string {
+		return this.name;
 	}
 
     /**
-     * Getter email
+     * Getter $email
      * @return {string}
      */
-	public get email(): string {
-		return this._email;
+	public get $email(): string {
+		return this.email;
 	}
 
     /**
-     * Getter phone
+     * Getter $phone
      * @return {string}
      */
-	public get phone(): string {
-		return this._phone;
+	public get $phone(): string {
+		return this.phone;
 	}
 
     /**
-     * Getter address
+     * Getter $address
      * @return {string}
      */
-	public get address(): string {
-		return this._address;
+	public get $address(): string {
+		return this.address;
 	}
 
     /**
-     * Getter typeId
+     * Getter $typeId
      * @return {number}
      */
-	public get typeId(): number {
-		return this._typeId;
+	public get $typeId(): number {
+		return this.typeId;
 	}
 
     /**
-     * Setter id
+     * Setter $id
      * @param {number} value
      */
-	public set id(value: number) {
-		this._id = value;
+	public set $id(value: number) {
+		this.id = value;
 	}
 
     /**
-     * Setter name
+     * Setter $name
      * @param {string} value
      */
-	public set name(value: string) {
-		this._name = value;
+	public set $name(value: string) {
+		this.name = value;
 	}
 
     /**
-     * Setter email
+     * Setter $email
      * @param {string} value
      */
-	public set email(value: string) {
-		this._email = value;
+	public set $email(value: string) {
+		this.email = value;
 	}
 
     /**
-     * Setter phone
+     * Setter $phone
      * @param {string} value
      */
-	public set phone(value: string) {
-		this._phone = value;
+	public set $phone(value: string) {
+		this.phone = value;
 	}
 
     /**
-     * Setter address
+     * Setter $address
      * @param {string} value
      */
-	public set address(value: string) {
-		this._address = value;
+	public set $address(value: string) {
+		this.address = value;
 	}
 
     /**
-     * Setter typeId
+     * Setter $typeId
      * @param {number} value
      */
-	public set typeId(value: number) {
-		this._typeId = value;
+	public set $typeId(value: number) {
+		this.typeId = value;
 	}
-
-
+    
 }
+
+
+
+  

@@ -11,10 +11,11 @@ export const showDataCombobox = (contactTypes) => {
     });
 };
 export const changeTypeContact = (typeId, contacts) => {
+    const table = document.querySelector("#listContact tbody");
+    table.innerHTML = "";
+    console.log("contacts", contacts);
     if (typeId) {
         const filterContact = contacts.filter((item) => item.typeId == typeId);
-        const table = document.querySelector("#listContact tbody");
-        table.innerHTML = "";
         if (filterContact.length) {
             filterContact.forEach((emp) => {
                 const row = document.createElement("tr");

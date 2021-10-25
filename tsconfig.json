@@ -6,6 +6,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "strictNullChecks": false,
     "suppressImplicitAnyIndexErrors": true,
     "moduleResolution": "node",
     "types": ["node", "express"]

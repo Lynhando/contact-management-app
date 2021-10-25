@@ -42,6 +42,7 @@ export const showData = (contacts: any[]) => {
 
     table?.appendChild(row);
   });
+  localStorage.setItem('contacts', JSON.stringify(contacts));
 };
 
 export const addData = (
@@ -60,44 +61,56 @@ export const addData = (
     address.value,
     typeId
   );
-  const table = document.querySelector("#listContact");
+  console.log(itemContact)
+  
+  const selectType = document.querySelector("#typeContact") as HTMLSelectElement;
+  const sel = selectType.selectedIndex;
+  const opt = selectType.options[sel];
+  const selectedTypeId = opt.getAttribute("id") as string;
+  if (typeId === selectedTypeId || !selectedTypeId) {
+    const table = document.querySelector("#listContact tbody");
 
-  let row = document.createElement("tr");
-  Object.keys(itemContact).forEach((key) => {
-    console.log(key);
-    let cell = document.createElement("td");
-    let textNode = document.createTextNode(itemContact[key]);
-    cell.appendChild(textNode);
-    if (key == "_typeId") cell.hidden = true;
-    row.appendChild(cell);
-  });
+    let row = document.createElement("tr");
+    Object.keys(itemContact).forEach((key) => {
+      console.log(key);
+      let cell = document.createElement("td");
+      let textNode = document.createTextNode(itemContact[key]);
+      cell.appendChild(textNode);
+      if (key == "typeId") cell.hidden = true;
+      row.appendChild(cell);
+    });
 
-  let editCell = document.createElement("td");
-  const editBtn = document.createElement("button");
-  editBtn.setAttribute("id", id);
-  editBtn.setAttribute("class", "btn btn-primary btn-xs edit");
-  editBtn.setAttribute("data-toggle", "modal");
-  editBtn.setAttribute("data-target", "#edit");
+    let editCell = document.createElement("td");
+    const editBtn = document.createElement("button");
+    editBtn.setAttribute("id", id);
+    editBtn.setAttribute("class", "btn btn-primary btn-xs edit");
+    editBtn.setAttribute("data-toggle", "modal");
+    editBtn.setAttribute("data-target", "#edit");
 
-  const editIcon = document.createElement("span");
-  editIcon.setAttribute("class", "ti-pencil");
-  editBtn.appendChild(editIcon);
-  editCell.appendChild(editBtn);
-  row.appendChild(editCell);
+    const editIcon = document.createElement("span");
+    editIcon.setAttribute("class", "ti-pencil");
+    editBtn.appendChild(editIcon);
+    editCell.appendChild(editBtn);
+    row.appendChild(editCell);
 
-  let delCell = document.createElement("td");
-  const delBtn = document.createElement("button");
-  delBtn.setAttribute("id", id);
-  delBtn.setAttribute("class", "btn btn-danger btn-xs delete");
-  delBtn.setAttribute("data-toggle", "modal");
-  delBtn.setAttribute("data-target", "#delete");
+    let delCell = document.createElement("td");
+    const delBtn = document.createElement("button");
+    delBtn.setAttribute("id", id);
+    delBtn.setAttribute("class", "btn btn-danger btn-xs delete");
+    delBtn.setAttribute("data-toggle", "modal");
+    delBtn.setAttribute("data-target", "#delete");
 
-  const delIcon = document.createElement("span");
-  delIcon.setAttribute("class", "ti-trash");
-  delBtn.appendChild(delIcon);
-  delCell.appendChild(delBtn);
-  row.appendChild(delCell);
+    const delIcon = document.createElement("span");
+    delIcon.setAttribute("class", "ti-trash");
+    delBtn.appendChild(delIcon);
+    delCell.appendChild(delBtn);
+    row.appendChild(delCell);
 
-  table?.appendChild(row);
+    table?.appendChild(row); 
+    let contacts = JSON.parse(localStorage.getItem('contacts'));
+    contacts.push(itemContact)   
+    localStorage.setItem("contacts", JSON.stringify(contacts))
+  }
+  
   return itemContact;
 };

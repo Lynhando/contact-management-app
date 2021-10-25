@@ -13,10 +13,11 @@ export const showDataCombobox = (contactTypes: any[]) => {
 };
 
 export const changeTypeContact = (typeId: string, contacts: any[]) => {
+  const table = document.querySelector("#listContact tbody") as HTMLElement;
+  table.innerHTML = "";
+  console.log("contacts", contacts);
   if (typeId) {
     const filterContact = contacts.filter((item) => item.typeId == typeId);
-    const table = document.querySelector("#listContact tbody") as HTMLElement;
-    table.innerHTML = "";
 
     if (filterContact.length) {
       filterContact.forEach((emp) => {
