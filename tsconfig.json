@@ -8,6 +8,7 @@
     "strict": true,
     "strictNullChecks": false,
     "suppressImplicitAnyIndexErrors": true,
+    "strictFunctionTypes": false,
     "moduleResolution": "node",
     "types": ["node", "express"]
   },
