@@ -1,4 +1,5 @@
 
+import { Contact } from "../models/contact.js";
 import { showData, addData } from "../modules/contact.js";
 const contactData = require('../data/contact');
 
@@ -17,7 +18,6 @@ form.addEventListener("submit", (e: Event) => {
   const opt = select.options[sel];
   const typeId = opt.getAttribute('id');
   const itemContact = addData(contactData.length + 1, name, email, phone, address, typeId)
-  contactData.push(itemContact)
 });
 
 document.querySelectorAll('.edit').forEach(item => {

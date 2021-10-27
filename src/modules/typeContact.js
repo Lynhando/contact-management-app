@@ -1,6 +1,7 @@
-export const showDataCombobox = (typeContactData) => {
+import { showData } from "./contact";
+export const showDataCombobox = (contactTypes) => {
     document.querySelectorAll(".type-contact").forEach((select) => {
-        typeContactData.forEach((item) => {
+        contactTypes.forEach((item) => {
             const option = document.createElement("option");
             option.textContent = item.typeName;
             option.value = item.typeName;
@@ -9,23 +10,24 @@ export const showDataCombobox = (typeContactData) => {
         });
     });
 };
-export const changeTypeContact = (typeId, listContact) => {
+export const changeTypeContact = (typeId, contacts) => {
+    const table = document.querySelector("#listContact tbody");
+    table.innerHTML = "";
+    console.log("contacts", contacts);
     if (typeId) {
-        const filterContact = listContact.filter((item) => item.typeId == typeId);
-        let table = document.querySelector("#listContact");
-        table.innerHTML = "";
+        const filterContact = contacts.filter((item) => item.typeId == typeId);
         if (filterContact.length) {
             filterContact.forEach((emp) => {
                 const row = document.createElement("tr");
                 Object.keys(emp).forEach((key) => {
-                    let cell = document.createElement("td");
-                    let textNode = document.createTextNode(emp[key]);
+                    const cell = document.createElement("td");
+                    const textNode = document.createTextNode(emp[key]);
                     cell.appendChild(textNode);
                     if (key == "typeId")
                         cell.hidden = true;
                     row.appendChild(cell);
                 });
-                let editCell = document.createElement("td");
+                const editCell = document.createElement("td");
                 const editBtn = document.createElement("button");
                 editBtn.setAttribute("id", emp.id);
                 editBtn.setAttribute("class", "btn btn-primary btn-xs edit");
@@ -36,7 +38,7 @@ export const changeTypeContact = (typeId, listContact) => {
                 editBtn.appendChild(editIcon);
                 editCell.appendChild(editBtn);
                 row.appendChild(editCell);
-                let delCell = document.createElement("td");
+                const delCell = document.createElement("td");
                 const delBtn = document.createElement("button");
                 delBtn.setAttribute("id", emp.id);
                 delBtn.setAttribute("class", "btn btn-danger btn-xs delete");
@@ -51,6 +53,16 @@ export const changeTypeContact = (typeId, listContact) => {
             });
         }
         else {
+            const row = document.createElement("tr");
+            const cell = document.createElement("td");
+            cell.setAttribute("colspan", "7");
+            cell.setAttribute("class", "text-center");
+            const textNode = document.createTextNode("No data records found in table");
+            cell.appendChild(textNode);
+            row.appendChild(cell);
+            table === null || table === void 0 ? void 0 : table.appendChild(row);
         }
     }
+    else
+        showData(contacts);
 };

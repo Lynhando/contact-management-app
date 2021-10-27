@@ -1,6 +1,8 @@
-export const showDataCombobox = (typeContactData: any[]) => {
+import { showData } from "./contact";
+
+export const showDataCombobox = (contactTypes: any[]) => {
   document.querySelectorAll(".type-contact").forEach((select) => {
-    typeContactData.forEach((item: any) => {
+    contactTypes.forEach((item: any) => {
       const option = document.createElement("option");
       option.textContent = item.typeName;
       option.value = item.typeName;
@@ -10,57 +12,65 @@ export const showDataCombobox = (typeContactData: any[]) => {
   });
 };
 
-export const changeTypeContact = (typeId: string, listContact: any[]) => {
+export const changeTypeContact = (typeId: string, contacts: any[]) => {
+  const table = document.querySelector("#listContact tbody") as HTMLElement;
+  table.innerHTML = "";
+  console.log("contacts", contacts);
   if (typeId) {
-    const filterContact = listContact.filter((item) => item.typeId == typeId);
+    const filterContact = contacts.filter((item) => item.typeId == typeId);
 
-    let table = document.querySelector("#listContact") as HTMLElement;
-    table.innerHTML = "";
-
-    if (filterContact.length)
-    {
+    if (filterContact.length) {
       filterContact.forEach((emp) => {
         const row = document.createElement("tr");
         Object.keys(emp).forEach((key) => {
-          let cell = document.createElement("td");
-          let textNode = document.createTextNode(emp[key]);
+          const cell = document.createElement("td");
+          const textNode = document.createTextNode(emp[key]);
           cell.appendChild(textNode);
-  
+
           if (key == "typeId") cell.hidden = true;
           row.appendChild(cell);
         });
-  
-        let editCell = document.createElement("td");
+
+        const editCell = document.createElement("td");
         const editBtn = document.createElement("button");
         editBtn.setAttribute("id", emp.id);
         editBtn.setAttribute("class", "btn btn-primary btn-xs edit");
         editBtn.setAttribute("data-toggle", "modal");
         editBtn.setAttribute("data-target", "#edit");
-  
+
         const editIcon = document.createElement("span");
         editIcon.setAttribute("class", "ti-pencil");
         editBtn.appendChild(editIcon);
         editCell.appendChild(editBtn);
         row.appendChild(editCell);
-  
-        let delCell = document.createElement("td");
+
+        const delCell = document.createElement("td");
         const delBtn = document.createElement("button");
         delBtn.setAttribute("id", emp.id);
         delBtn.setAttribute("class", "btn btn-danger btn-xs delete");
         delBtn.setAttribute("data-toggle", "modal");
         delBtn.setAttribute("data-target", "#delete");
-  
+
         const delIcon = document.createElement("span");
         delIcon.setAttribute("class", "ti-trash");
         delBtn.appendChild(delIcon);
         delCell.appendChild(delBtn);
         row.appendChild(delCell);
-  
+
         table?.appendChild(row);
       });
     } else {
+      const row = document.createElement("tr");
+      const cell = document.createElement("td");
+      cell.setAttribute("colspan", "7");
+      cell.setAttribute("class", "text-center");
 
+      const textNode = document.createTextNode(
+        "No data records found in table"
+      );
+      cell.appendChild(textNode);
+      row.appendChild(cell);
+      table?.appendChild(row);
     }
-    
-  } 
+  } else showData(contacts);
 };

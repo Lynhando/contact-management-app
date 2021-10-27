@@ -1,46 +1,46 @@
 export class Contact {
-    constructor(_id, _name, _email, _phone, _address, _typeId) {
-        this._id = _id;
-        this._name = _name;
-        this._email = _email;
-        this._phone = _phone;
-        this._address = _address;
-        this._typeId = _typeId;
+    constructor(id, name, email, phone, address, typeId) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.typeId = typeId;
     }
-    get id() {
-        return this._id;
+    get $id() {
+        return this.id;
     }
-    get name() {
-        return this._name;
+    get $name() {
+        return this.name;
     }
-    get email() {
-        return this._email;
+    get $email() {
+        return this.email;
     }
-    get phone() {
-        return this._phone;
+    get $phone() {
+        return this.phone;
     }
-    get address() {
-        return this._address;
+    get $address() {
+        return this.address;
     }
-    get typeId() {
-        return this._typeId;
+    get $typeId() {
+        return this.typeId;
     }
-    set id(value) {
-        this._id = value;
+    set $id(value) {
+        this.id = value;
     }
-    set name(value) {
-        this._name = value;
+    set $name(value) {
+        this.name = value;
     }
-    set email(value) {
-        this._email = value;
+    set $email(value) {
+        this.email = value;
     }
-    set phone(value) {
-        this._phone = value;
+    set $phone(value) {
+        this.phone = value;
     }
-    set address(value) {
-        this._address = value;
+    set $address(value) {
+        this.address = value;
     }
-    set typeId(value) {
-        this._typeId = value;
+    set $typeId(value) {
+        this.typeId = value;
     }
 }
