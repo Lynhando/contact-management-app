@@ -1,57 +1,78 @@
-(function($) {
+(function ($) {
+  "use strict";
 
-	"use strict";
+  $("#contactForm").validate({
+    rules: {
+      name : {
+        required: true,
+      },
+      phone: {
+        required: true,
+        number: true,
+        maxlength: 10
+      },
+      email: {
+        required: true,
+        email: true
+      },
+      address: {
+        required: true,
+      },   
+    },
+    messages : {
+      name: {
+        required: "Please enter your full name"
+      },
+      phone: {
+        required: "Please enter your phone number",
+        number: "Phone number format is invalid",
+        maxlength: "Please enter no more 10 digits"
+      },
+      email: {
+        required: "Please enter your email",
+        email: "The email format is not correct"
+      },
+      address: {
+        required: "Please enter your address",
+      }
+    }
+  });
 
 
-  // Form
-	var contactForm = function() {
-		if ($('#contactForm').length > 0 ) {
-			$( "#contactForm" ).validate( {
-				rules: {
-					name: "required",
-					phone: "required",
-					email: {
-						required: true,
-						email: true
-					},
-					address: {
-						required: true,
-						minlength: 5
-					}
-				},
-				messages: {
-					name: "Please enter your name",
-					phone: "Please enter your phone",
-					email: "Please enter a valid email address",
-					address: "Please enter a address"
-				},
-			})
-		} else return;
-	};
-	contactForm();
-
-	var editForm = function() {
-		if ($('#editForm').length > 0 ) {
-			$( "#editForm" ).validate( {
-				rules: {
-					name: "required",
-					phone: "required",
-					email: {
-						required: true,
-						email: true
-					},
-					address: "required",
-				},
-				messages: {
-					name: "Please enter your name",
-					phone: "Please enter your phone",
-					email: "Please enter a valid email address",
-					address: "Please enter a address"
-				},
-				/* submit via ajax */
-
-			});
-		}
-	};
-	editForm();
+  $("#editForm").validate({
+    rules: {
+      name : {
+        required: true,
+      },
+      phone: {
+        required: true,
+        number: true,
+        maxlength: 10
+      },
+      email: {
+        required: true,
+        email: true
+      },
+      address: {
+        required: true,
+      },   
+    },
+    messages : {
+      name: {
+        required: "Please enter your full name"
+      },
+      phone: {
+        required: "Please enter your phone number",
+        number: "Phone number format is invalid",
+        maxlength: "Please enter no more 10 digits"
+      },
+      email: {
+        required: "Please enter your email",
+        email: "The email format is not correct"
+      },
+      address: {
+        required: "Please enter your address",
+      }
+    }
+  });
 })(jQuery);
