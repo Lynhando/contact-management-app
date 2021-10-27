@@ -60,6 +60,7 @@ export const showData = (contacts) => {
         delBtn.setAttribute("class", "btn btn-danger btn-xs delete");
         delBtn.setAttribute("data-toggle", "modal");
         delBtn.setAttribute("data-target", "#delete");
+        delBtn.addEventListener("click", ((e) => setDelFormId(emp.id)));
         const delIcon = document.createElement("span");
         delIcon.setAttribute("class", "ti-trash");
         delBtn.appendChild(delIcon);
@@ -114,3 +115,9 @@ export const addContact = (contactName, email, phone, address, typeId, contacts)
     localStorage.setItem("contacts", JSON.stringify(contacts));
     return itemContact;
 };
+function setDelFormId(id) {
+    const contactFormId = document.querySelector("#delFormId");
+    contactFormId.innerHTML = '';
+    contactFormId.appendChild(document.createTextNode(`${id}`));
+    contactFormId.hidden = true;
+}
