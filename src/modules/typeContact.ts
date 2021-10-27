@@ -15,8 +15,8 @@ export const showDataCombobox = (contactTypes: any[]) => {
 export const changeTypeContact = (typeId: string, contacts: any[]) => {
   const table = document.querySelector("#listContact tbody") as HTMLElement;
   table.innerHTML = "";
-  console.log("contacts", contacts);
   if (typeId) {
+    let count = 0
     const filterContact = contacts.filter((item) => item.typeId == typeId);
 
     if (filterContact.length) {
@@ -24,7 +24,7 @@ export const changeTypeContact = (typeId: string, contacts: any[]) => {
         const row = document.createElement("tr");
         Object.keys(emp).forEach((key) => {
           const cell = document.createElement("td");
-          const textNode = document.createTextNode(emp[key]);
+          const textNode =  document.createTextNode((key === "id") ? `${++count}` : (emp[key]));
           cell.appendChild(textNode);
 
           if (key == "typeId") cell.hidden = true;

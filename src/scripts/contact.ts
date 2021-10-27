@@ -1,44 +1,50 @@
 
-import { Contact } from "../models/contact.js";
-import { showData, addData } from "../modules/contact.js";
+import { showData, addContact, editContact, handleContactStorage } from "../modules/contact.js";
 const contactData = require('../data/contact');
+const contactStorage = JSON.parse(localStorage.getItem("contacts"));
+const listContact = handleContactStorage(contactStorage, contactData)
 
 
-showData(contactData);
-const form = document.querySelector(".add-form") as HTMLFormElement;
+showData(listContact);
+const addForm = document.querySelector(".add-form") as HTMLFormElement;
+const editForm = document.querySelector(".edit-form") as HTMLFormElement;
 
-const select = document.querySelector('#comboboxContact') as HTMLSelectElement
-form.addEventListener("submit", (e: Event) => {
+
+const addFormSelect = document.querySelector('#comboboxContact') as HTMLSelectElement
+addForm.addEventListener("submit", (e: Event) => {
   e.preventDefault();
-  const name = document.querySelector("#name") as HTMLInputElement;
-  const email = document.querySelector("#email") as HTMLInputElement;
-  const phone = document.querySelector("#phone") as HTMLInputElement;
-  const address = document.querySelector("#address") as HTMLInputElement;
-  const sel = select.selectedIndex;
-  const opt = select.options[sel];
-  const typeId = opt.getAttribute('id');
-  const itemContact = addData(contactData.length + 1, name, email, phone, address, typeId)
+  const contactStorage = JSON.parse(localStorage.getItem("contacts"));
+  const listContact = handleContactStorage(contactStorage, contactData)
+
+  const fomrData = new FormData(addForm)  
+  const name = fomrData.get('name') as string
+  const email = fomrData.get('email') as string
+  const phone = fomrData.get('phone') as string
+  const address = fomrData.get('address') as string
+  const sel = addFormSelect.selectedIndex; 
+  const opt = addFormSelect.options[sel];
+  const typeId = Number(opt.getAttribute('id'));
+  if (name && email && phone && address) addContact(name, email, phone, address, typeId, listContact)    
 });
 
-document.querySelectorAll('.edit').forEach(item => {
-  item.addEventListener('click', event => {
-    console.log(item.getAttribute('id'))
-  })
-})
+const editFormSelect = document.querySelector('#editComboboxContact') as HTMLSelectElement
+editForm.addEventListener("submit", (e: Event) => {
+  e.preventDefault();
+  const contactStorage = JSON.parse(localStorage.getItem("contacts"));
+  const listContact = handleContactStorage(contactStorage, contactData)
 
-document.querySelectorAll('#comboboxContact').forEach(item => {
-  console.log(item)
-  // item.addEventListener('click', event => {
-  //   console.log(item.getAttribute('id'))
-  // })
-})
-
-// var dropd = document.getElementById("comboboxContact");
-// var e = (document.getElementById("comboboxContact")) as HTMLSelectElement;
-//     var sel = e.selectedIndex;
-//     var opt = e.options[sel];
-//     console.log(sel)
-//     console.log(opt)
+  const fomrData = new FormData(editForm)  
+  const name = fomrData.get('name') as string
+  const email = fomrData.get('email') as string
+  const phone = fomrData.get('phone') as string
+  const address = fomrData.get('address') as string
+  const sel = editFormSelect.selectedIndex;
+  const opt = editFormSelect.options[sel];
+  const typeId = Number(opt.getAttribute('id'));
+  const contactFormId = document.querySelector("#contactFormId") as HTMLElement
+  const id = Number(contactFormId.innerHTML.trim())
+  const itemContact = editContact(id, name, email, phone, address, typeId)
+});
 
 
 

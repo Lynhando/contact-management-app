@@ -25,35 +25,33 @@
 					email: "Please enter a valid email address",
 					address: "Please enter a address"
 				},
-				/* submit via ajax */
-
-			});
-		}
+			})
+		} else return;
 	};
 	contactForm();
 
-	var editForm = function() {
-		if ($('#editForm').length > 0 ) {
-			$( "#editForm" ).validate( {
-				rules: {
-					name: "required",
-					phone: "required",
-					email: {
-						required: true,
-						email: true
-					},
-					address: "required",
-				},
-				messages: {
-					name: "Please enter your name",
-					phone: "Please enter your phone",
-					email: "Please enter a valid email address",
-					address: "Please enter a address"
-				},
-				/* submit via ajax */
+	// var editForm = function() {
+	// 	if ($('#editForm').length > 0 ) {
+	// 		$( "#editForm" ).validate( {
+	// 			rules: {
+	// 				name: "required",
+	// 				phone: "required",
+	// 				email: {
+	// 					required: true,
+	// 					email: true
+	// 				},
+	// 				address: "required",
+	// 			},
+	// 			messages: {
+	// 				name: "Please enter your name",
+	// 				phone: "Please enter your phone",
+	// 				email: "Please enter a valid email address",
+	// 				address: "Please enter a address"
+	// 			},
+	// 			/* submit via ajax */
 
-			});
-		}
-	};
-	editForm();
+	// 		});
+	// 	}
+	// };
+	// editForm();
 })(jQuery);
