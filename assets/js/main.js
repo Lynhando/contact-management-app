@@ -25,10 +25,8 @@
 					email: "Please enter a valid email address",
 					address: "Please enter a address"
 				},
-				/* submit via ajax */
-
-			});
-		}
+			})
+		} else return;
 	};
 	contactForm();
 

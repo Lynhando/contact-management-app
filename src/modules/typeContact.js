@@ -13,15 +13,15 @@ export const showDataCombobox = (contactTypes) => {
 export const changeTypeContact = (typeId, contacts) => {
     const table = document.querySelector("#listContact tbody");
     table.innerHTML = "";
-    console.log("contacts", contacts);
     if (typeId) {
+        let count = 0;
         const filterContact = contacts.filter((item) => item.typeId == typeId);
         if (filterContact.length) {
             filterContact.forEach((emp) => {
                 const row = document.createElement("tr");
                 Object.keys(emp).forEach((key) => {
                     const cell = document.createElement("td");
-                    const textNode = document.createTextNode(emp[key]);
+                    const textNode = document.createTextNode((key === "id") ? `${++count}` : (emp[key]));
                     cell.appendChild(textNode);
                     if (key == "typeId")
                         cell.hidden = true;
