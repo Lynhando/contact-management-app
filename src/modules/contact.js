@@ -21,18 +21,14 @@ const showEditDetails = (obj) => {
     document.querySelectorAll("#editComboboxContact option").forEach((item) => item.removeAttribute("selected"));
     document.querySelector(`#editComboboxContact option[id="${obj.typeId}"]`).setAttribute("selected", "selected");
 };
-export const editContact = (id, contactName, email, phone, address, typeId) => {
+export const editContact = (id, contactName, email, phone, address, typeId, contacts) => {
     const itemContact = new Contact(id, contactName, email, phone, address, typeId);
-    const contacts = JSON.parse(localStorage.getItem("contacts"));
     const index = contacts.findIndex((item) => item.id === id);
     contacts.splice(index, 1, itemContact);
-    console.log(contacts);
     localStorage.setItem("contacts", JSON.stringify(contacts));
-    console.log(contacts);
     location.reload();
 };
 export const showData = (contacts) => {
-    console.log(contacts);
     const table = document.querySelector("#listContact tbody");
     table.innerHTML = "";
     let count = 0;

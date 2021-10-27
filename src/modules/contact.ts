@@ -31,7 +31,8 @@ export const editContact = (
   email: string,
   phone: string,
   address: string,
-  typeId: number
+  typeId: number,
+  contacts: any[]
 ) => {
   const itemContact = new Contact(
     id,
@@ -41,18 +42,14 @@ export const editContact = (
     address,
     typeId
   );
-  const contacts = JSON.parse(localStorage.getItem("contacts"));
   const index = contacts.findIndex((item: any) => item.id === id);
   
   contacts.splice(index, 1, itemContact)
-  console.log(contacts)
   localStorage.setItem("contacts", JSON.stringify(contacts))
-  console.log(contacts)
   location.reload();
 };
 
 export const showData = (contacts: any[]) => {
-  console.log(contacts)
   const table = document.querySelector("#listContact tbody") as HTMLElement;
   table.innerHTML = "";
   let count = 0
@@ -167,3 +164,7 @@ export const addContact = (
 
   return itemContact;
 };
+
+// export const delContact = (id: number, contacts: any[]) {
+
+// }

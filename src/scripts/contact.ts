@@ -43,7 +43,7 @@ editForm.addEventListener("submit", (e: Event) => {
   const typeId = Number(opt.getAttribute('id'));
   const contactFormId = document.querySelector("#contactFormId") as HTMLElement
   const id = Number(contactFormId.innerHTML.trim())
-  if (name && email && phone && address) editContact(id, name, email, phone, address, typeId)
+  if (name && email && phone && address) editContact(id, name, email, phone, address, typeId, listContact)
 });
 
 
