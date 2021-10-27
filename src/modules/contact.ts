@@ -83,7 +83,8 @@ export const showData = (contacts: any[]) => {
     delBtn.setAttribute("id", emp.id);
     delBtn.setAttribute("class", "btn btn-danger btn-xs delete");
     delBtn.setAttribute("data-toggle", "modal");
-    delBtn.setAttribute("data-target", "#delete");
+    delBtn.setAttribute("data-target", "#delete");    
+    delBtn.addEventListener("click",((e: CustomEvent) => setDelFormId(emp.id)) as EventListener);
 
     const delIcon = document.createElement("span");
     delIcon.setAttribute("class", "ti-trash");
@@ -165,6 +166,11 @@ export const addContact = (
   return itemContact;
 };
 
-// export const delContact = (id: number, contacts: any[]) {
+function setDelFormId (id: number){
+  const contactFormId = document.querySelector("#delFormId") as HTMLElement
+  contactFormId.innerHTML = '';
+  contactFormId.appendChild(document.createTextNode(`${id}`))
+  contactFormId.hidden = true
+}
 
-// }
+

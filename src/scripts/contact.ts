@@ -46,6 +46,18 @@ editForm.addEventListener("submit", (e: Event) => {
   if (name && email && phone && address) editContact(id, name, email, phone, address, typeId, listContact)
 });
 
+const deleteForm = document.querySelector('#deleteForm') as HTMLSelectElement
+deleteForm.addEventListener("click", (e:Event) =>{
+  const contactFormId = document.querySelector("#delFormId") as HTMLElement
+  const id = Number(contactFormId.innerHTML.trim())
+
+  let contacts =localStorage.getItem('contacts') ? JSON.parse(localStorage.getItem('contacts')) : [];
+  
+  const index = contacts.findIndex((item: any) => item.id === id);
+  contacts.splice(index, 1)
+  localStorage.setItem('contacts', JSON.stringify(contacts));
+  location.reload();
+});
 
 
 
