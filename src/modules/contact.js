@@ -1,11 +1,11 @@
 import { Contact } from "../models/contact.js";
 export const handleContactStorage = (contactStorage, contactData) => {
     if (contactStorage && contactStorage.length) {
-        return (contactStorage);
+        return contactStorage;
     }
     else {
         localStorage.setItem("contacts", JSON.stringify(contactData));
-        return (contactData);
+        return contactData;
     }
 };
 const showEditDetails = (obj) => {

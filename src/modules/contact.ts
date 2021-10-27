@@ -2,10 +2,10 @@ import { Contact } from "../models/contact.js";
 
 export const handleContactStorage = (contactStorage: any[], contactData: any[]) => {
   if (contactStorage && contactStorage.length) {
-    return(contactStorage)
+    return contactStorage
   } else {
     localStorage.setItem("contacts", JSON.stringify(contactData))
-    return(contactData)
+    return contactData
   }
 }
 
@@ -49,13 +49,6 @@ export const editContact = (
   localStorage.setItem("contacts", JSON.stringify(contacts))
   console.log(contacts)
   location.reload();
-
-  // document.createTextNode(`${id}`)
-  // let table = document.querySelector("#listContact tbody") as HTMLElement
-  // table.item(0).cells;
-
-  //   var el = document.querySelector('#listContact') as HTMLTableRowElement;
-  // console.log(el.cells);
 };
 
 export const showData = (contacts: any[]) => {
@@ -156,7 +149,6 @@ export const addContact = (
 
     const delCell = document.createElement("td");
     const delBtn = document.createElement("button");
-    // delBtn.setAttribute("id", `${id}`);
     delBtn.setAttribute("class", "btn btn-danger btn-xs delete");
     delBtn.setAttribute("data-toggle", "modal");
     delBtn.setAttribute("data-target", "#delete");
