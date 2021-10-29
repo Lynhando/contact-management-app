@@ -16,14 +16,7 @@ addForm.addEventListener("submit", (e: Event) => {
   let checkError = false
   document.querySelectorAll('.add-form .form-group').forEach((item, index) => {
     const error = item.getElementsByTagName("label")[1]
-    if (error?.className == "error" && error.innerHTML) {
-      checkError = true
-    }
-    if (checkError === false && index == document.querySelectorAll('.add-form .form-group').length - 1)
-    {
-      document.querySelectorAll("input").forEach((item) => item.value = "")
-      document.querySelector("textarea").value = ""
-    }
+    if (error?.className == "error" && error.innerHTML) checkError = true
   })
   if (!checkError) {
     const contactStorage = JSON.parse(localStorage.getItem("contacts"));
@@ -37,7 +30,12 @@ addForm.addEventListener("submit", (e: Event) => {
     const sel = addFormSelect.selectedIndex;
     const opt = addFormSelect.options[sel];
     const typeId = Number(opt.getAttribute('id'));
-    if (name && email && phone && address) addContact(name, email, phone, address, typeId, listContact)
+    if (checkError === false)
+    {
+      document.querySelectorAll("input").forEach((item) => item.value = "")
+      document.querySelector("textarea").value = ""
+    }
+    if (name && email && phone && address) addContact(name, email, phone, address, typeId, listContact)    
   } else return
 });
 
